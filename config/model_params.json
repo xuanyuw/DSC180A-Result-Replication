@@ -1,0 +1,5 @@
+{
+    "train_pct": 0.75,
+    "depth": 5,
+    "out_path": "../data/out/"
+}

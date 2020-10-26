@@ -1,0 +1,5 @@
+{
+    "agg_fn": "mean",
+    "agg_unit": "month",
+    "out_path": "../data/temp/"
+}
