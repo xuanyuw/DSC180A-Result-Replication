@@ -1,8 +1,4 @@
 {
-    "year_start": 2000,
-    "year_end": 2020,
-    "location": "UCSD",
-    "major": "DSC",
+    "input_path": "/datasets/srp073813",
     "out_path": "../data/raw/" 
-
 }
