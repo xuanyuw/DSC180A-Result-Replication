@@ -9,9 +9,15 @@ def get_data(input_path, out_path=None):
     """
     all_files = glob.glob(input_path + "/*.1")
     for i in all_files:
-        # convert data format using fastq_dump here
+        print('loading file: %s' %i)
+        # place holder: convert data format using fastq_dump here
+        print('converting to fastq...')
+        # place holder: pre-processing using catadapt
+        print('catadapt WIP...')
         
-        print(i) #only to test the functionality, will be deleted later
+        
+
+
 
     data = None # save converted data here
 
