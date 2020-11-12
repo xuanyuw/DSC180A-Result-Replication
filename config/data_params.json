@@ -1,4 +1,5 @@
 {
     "input_path": "/datasets/srp073813",
+    "temp_path": "./src/data/tmp",
     "out_path": "../data/raw/" 
 }

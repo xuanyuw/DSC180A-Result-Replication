@@ -20,12 +20,17 @@ def main(targets):
     `main` runs the targets in order of data=>analysis=>model.
     '''
 
-    if 'data' in targets:
+    #if 'data' in targets:
+    #    with open('config/data_params.json') as fh:
+    #        data_cfg = json.load(fh)
+#
+    #    # load up the converted data
+    #    data = get_data(data_cfg['input_path'])
+    
+    if 'EDA' in targets:
         with open('config/data_params.json') as fh:
             data_cfg = json.load(fh)
-
-        # load up the converted data
-        data = get_data(data_cfg['input_path'])
+        
 
     #if 'analysis' in targets:
     #    with open('config/analysis_params.json') as fh:
