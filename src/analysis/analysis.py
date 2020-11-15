@@ -12,7 +12,7 @@ def run_kallisto(input_path, quant_path, transcripts, bootstrap, test_size=None)
     run on the first n files otherwise.
     """
     all_files = sorted(glob.glob(input_path + "/*.fastq.gz"))
-    if test_size = None:
+    if test_size == None:
         test_size = len(all_files)
     for i in range(0, test_size, 2):
         folder = quant_path + '/' + re.findall('srp073813/(.*)\_', all_files[i])[0]

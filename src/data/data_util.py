@@ -13,7 +13,7 @@ def run_fastqc(input_path, report_path test_size=None):
     If test_size is set to None, then run fastqc on all fastq.gz files in the directory,
     run on the first n files otherwise.
     """
-    if test_size = None:
+    if test_size == None:
         test_size = len(glob.glob(input_path + "/*.fastq.gz"))
     os.system("./src/data/run_fastqc.sh %s %d %s" %(input_path, test_size, report_path) )
 
