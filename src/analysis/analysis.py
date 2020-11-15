@@ -5,7 +5,7 @@ import os
 import re
 import glob
 
-def run_kallisto(input_path, quant_path, transcripts, bootstrap, test_size=None)
+def run_kallisto(input_path, quant_path, transcripts, bootstrap, test_size=None):
     """
     Run pseudo-alignment and quantification on the fastq data
     If test_size is set to None, then run fastqc on all fastq.gz files in the directory,

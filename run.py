@@ -7,7 +7,7 @@ sys.path.insert(0, 'src/data')
 sys.path.insert(0, 'src/analysis')
 sys.path.insert(0, 'src/model')
 
-from get_data import get_data
+from data_util import *
 #from analysis import compute_agg
 #from model import train
 
@@ -24,9 +24,8 @@ def main(targets):
     if 'Preprocessing' in targets:
         with open('config/data_params.json') as fh:
             data_cfg = json.load(fh)
-            print(data_cfg)
-        
-
+            run_fastqc(data_cfg['input_path'], data_cfg['report_path'], test_size=data_cfg['test_size'])
+    
     #if 'analysis' in targets:
     #    with open('config/analysis_params.json') as fh:
     #        analysis_cfg = json.load(fh)

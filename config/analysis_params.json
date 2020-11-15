@@ -1,6 +1,6 @@
 {
     "input_path": "/datasets/srp073813/",
-    "quant_path": "./src/data/tmp/quant",
+    "quant_path": "./data/tmp/quant",
     "transcripts": "/datasets/srp073813/reference/kallisto_transcripts.idx",
     "bootstrap": 100,
     "test_size": 20

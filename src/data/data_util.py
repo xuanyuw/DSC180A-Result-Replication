@@ -5,9 +5,7 @@ import glob
 import os
 import re
 
-
-
-def run_fastqc(input_path, report_path test_size=None):
+def run_fastqc(input_path, report_path, test_size=None):
     """
     Run fastqc on fastq.gz files from input_path and save reports in data/tmp/reports folder. 
     If test_size is set to None, then run fastqc on all fastq.gz files in the directory,
