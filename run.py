@@ -8,7 +8,7 @@ sys.path.insert(0, 'src/analysis')
 sys.path.insert(0, 'src/model')
 
 from data_util import *
-#from analysis import compute_agg
+from analysis import *
 #from model import train
 
 
@@ -19,19 +19,16 @@ def main(targets):
     
     `main` runs the targets in order of data=>analysis=>model.
     '''
-
     
-    if 'Preprocessing' in targets:
+    if 'preprocessing' in targets:
         with open('config/data_params.json') as fh:
             data_cfg = json.load(fh)
             run_fastqc(data_cfg['input_path'], data_cfg['report_path'], test_size=data_cfg['test_size'])
-    
-    #if 'analysis' in targets:
-    #    with open('config/analysis_params.json') as fh:
-    #        analysis_cfg = json.load(fh)
-#
-    #    # make the data target
-    #    compute_agg(data, **analysis_cfg)
+
+    if 'analysis' in targets:
+        with open('config/analysis_params.json') as fh:
+            analysis_cfg = json.load(fh)
+            run_kallisto(analysis_cfg['input_path'], analysis_cfg['quant_path'], analysis_cfg['transcripts'], analysis_cfg['bootstrap'], analysis_cfg['test_size'])
 #
     #if 'model' in targets:
     #    with open('config/model_params.json') as fh:
