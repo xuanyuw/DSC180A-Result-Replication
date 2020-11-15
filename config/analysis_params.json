@@ -1,5 +1,7 @@
 {
-    "agg_fn": "mean",
-    "agg_unit": "month",
-    "out_path": "../data/temp/"
+    "input_path": "/datasets/srp073813/",
+    "quant_path": "./src/data/tmp/quant",
+    "transcripts": "/datasets/srp073813/reference/kallisto_transcripts.idx",
+    "bootstrap": 100,
+    "test_size": 20
 }

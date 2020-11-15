@@ -1,5 +1,6 @@
 {
-    "input_path": "/datasets/srp073813",
-    "temp_path": "./src/data/tmp",
-    "out_path": "../data/raw/" 
+    "input_path": "/datasets/srp073813/",
+    "temp_path": "./data/tmp/",
+    "report_path":"./data/tmp/reports/", 
+    "test_size": 20
 }

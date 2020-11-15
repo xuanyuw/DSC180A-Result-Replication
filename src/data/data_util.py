@@ -1,32 +1,55 @@
-""" This file contains functions for data mining"""
+""" This file contains functions for quality control and potential data cleaning functions"""
 
 #import packages here
 import glob
+import os
+import re
 
-#def get_data(input_path, out_path=None):
+
+
+def run_fastqc(input_path, report_path test_size=None):
+    """
+    Run fastqc on fastq.gz files from input_path and save reports in data/tmp/reports folder. 
+    If test_size is set to None, then run fastqc on all fastq.gz files in the directory,
+    run on the first n files otherwise.
+    """
+    if test_size = None:
+        test_size = len(glob.glob(input_path + "/*.fastq.gz"))
+    os.system("./src/data/run_fastqc.sh %s %d %s" %(input_path, test_size, report_path) )
+
+def run_cutadapt(report_path):
+    """
+    Extract adapter info from fastqc reports, and run cutadapt if the adapter content is not PASS.
+    (not implemented yet)
+    """
+    all_zip = sorted(glob.glob(report_path+'/*.zip'))
+    for z in all_zip:
+        f_name = re.findall('tmp/(.*)\.zip', z)[0]
+        with zipfile.ZipFile(z, 'r') as zipObj:
+            with zipObj.open(f_name+'/summary.txt') as f:
+                adapter = f.readlines()[9]
+                if adapter[:4] != b'PASS':
+                    #cutadapt operations
+                    pass
+
+
+
+
+
+#def convert_to_fasta(input_path, fasta_path, test_size=None):
 #    """
-#    Get data from the website and return data. If out_path is not None, then save data to out_path.
+#    convert fastqc.gz files to fasta and save them into src/data/tmp/fasta_files.
+#    If test_size is set to None, then run fastqc on all fastq.gz files in the directory,
+#    run on the first n files otherwise. 
 #    """
-#    all_files = glob.glob(input_path + "/*.fastq.gz")
-#    for i in all_files:
-#        print('loading file: %s' %i)
-#        # place holder: convert data format using fastq_dump here
-#        print('converting to fastq...')
-#        # place holder: pre-processing using catadapt
-#        print('catadapt WIP...')
-#    
-#    data = None # save converted data here
-#
-#    if out_path is not None:
-#        pass  #write data
-#
-#    return data
+#    if not os.path.exists(fasta_path):
+#        os.makedirs(fasta_path)
+#    all_files = sorted(glob.glob(input_path + "/*.fastq.gz"))
+#    if test_size==None:
+#        test_size = len(all_files)
+#    for i in range(test_size):
+#        f = all_files[i]
+#        f_name = re.findall('srp073813/(.*)\.fastq', f)[0]
+#        fasta_name = fasta_path + '/' + f_name + '.fa'
+#        os.system("gunzip -c %s | paste - - - -  | cut -f 1,2 | sed 's/^/>/'  | tr \"\t\" \"\n\"  > %s" %(f,fasta_name))
 
-def run_fastqc(input_path, tmp_path, test_size=None):
-    all_files = sorted(glob.glob(input_path + "/*.fastq.gz"))
-    if test_size==None:
-        test_size = len(all_files)
-    for i in range(test_size):
-        os.system("/opt/FastQC/fastqc %s -o %s" %all_files[i] %tmp_path)
-
-#def run_cutadapt(tmp_path)
