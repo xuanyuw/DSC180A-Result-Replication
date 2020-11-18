@@ -4,6 +4,7 @@
 import glob
 import os
 import re
+import zipfile
 
 def run_fastqc(input_path, report_path, test_size=None):
     """
