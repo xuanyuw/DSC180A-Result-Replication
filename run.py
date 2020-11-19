@@ -41,7 +41,7 @@ def main(targets):
             create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'])
             create_dummy_data(input=testdata_cfg['input2'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'])
 
-    if 'test-all' in targets:
+    if 'test' in targets:
 
         with open('config/test_params.json') as fh:
             testdata_cfg = json.load(fh)
