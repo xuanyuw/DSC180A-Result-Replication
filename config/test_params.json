@@ -1,0 +1,12 @@
+{
+    "report_path":"./test/tmp/reports/",
+    "quant_path": "./test/tmp/quant",
+    "transcripts": "/datasets/srp073813/reference/kallisto_transcripts.idx",
+    "bootstrap": 2,
+    "input1": "/datasets/srp073813/SRR3438555_1.fastq.gz",
+    "input2": "/datasets/srp073813/SRR3438555_2.fastq.gz",
+    "output1": "./test/testdata/test1.fastq.gz",
+    "output2": "./test/testdata/test2.fastq.gz",
+    "num_lines": 100,
+    "input_path": "./test/testdata/"
+}

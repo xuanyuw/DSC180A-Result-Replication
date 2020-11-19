@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
+# pylint: disable=no-name-in-module
+# pylint: disable=no-self-argument
+
 import sys
 import json
 
-sys.path.insert(0, 'src/data')
-sys.path.insert(0, 'src/analysis')
-sys.path.insert(0, 'src/model')
+sys.path.insert(0, './src/data')
+sys.path.insert(0, './src/analysis')
+sys.path.insert(0, './test')
 
-from data_util import *
-from analysis import *
+from src.data.data_util import *
+from src.analysis.analysis import *
+from test.create_testdata import *
 #from model import train
 
 
@@ -29,6 +33,23 @@ def main(targets):
         with open('config/analysis_params.json') as fh:
             analysis_cfg = json.load(fh)
             run_kallisto(analysis_cfg['input_path'], analysis_cfg['quant_path'], analysis_cfg['transcripts'], analysis_cfg['bootstrap'], analysis_cfg['test_size'])
+
+    if 'test-data' in targets:
+        with open('config/test_params.json') as fh:
+            testdata_cfg = json.load(fh)
+            create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'])
+            create_dummy_data(input=testdata_cfg['input2'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'])
+
+    if 'testAll' in targets:
+        with open('config/test_params.json') as fh:
+            testdata_cfg = json.load(fh)
+            create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'])
+            create_dummy_data(input=testdata_cfg['input2'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'])
+            #run fastqc
+            run_fastqc(testdata_cfg['input_path'], testdata_cfg['report_path'])
+            #run kallisto
+            run_kallisto(testdata_cfg['input_path'], testdata_cfg['quant_path'], testdata_cfg['transcripts'], testdata_cfg['bootstrap'])
+
 #
     #if 'model' in targets:
     #    with open('config/model_params.json') as fh:
