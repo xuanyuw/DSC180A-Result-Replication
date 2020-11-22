@@ -12,6 +12,7 @@ from analysis import *
 #from model import train
 
 
+
 def main(targets):
     '''
     Runs the main project pipeline logic, given the targets.
@@ -19,16 +20,17 @@ def main(targets):
     
     `main` runs the targets in order of data=>analysis=>model.
     '''
-    
+
     if 'preprocessing' in targets:
         with open('config/data_params.json') as fh:
             data_cfg = json.load(fh)
-            run_fastqc(data_cfg['input_path'], data_cfg['report_path'], test_size=data_cfg['test_size'])
+            run_fastqc(data_cfg['input_path'], data_cfg['report_path'], start_point=data_cfg['start_point'], end_point=data_cfg['end_point'])
 
     if 'analysis' in targets:
         with open('config/analysis_params.json') as fh:
             analysis_cfg = json.load(fh)
-            run_kallisto(analysis_cfg['input_path'], analysis_cfg['quant_path'], analysis_cfg['transcripts'], analysis_cfg['bootstrap'], analysis_cfg['test_size'])
+            run_kallisto(analysis_cfg['input_path'], analysis_cfg['quant_path'], analysis_cfg['transcripts'], analysis_cfg['bootstrap'],
+            start_point= analysis_cfg['start_point'], end_point=analysis_cfg['end_point'])
 #
     #if 'model' in targets:
     #    with open('config/model_params.json') as fh:

@@ -1,5 +1,7 @@
 {
     "input_path": "/datasets/srp073813/",
     "report_path":"./data/tmp/reports/", 
-    "test_size": 20
+    "test_size": 20,
+    "start_point": 66,
+    "end_point": 100
 }

@@ -3,5 +3,7 @@
     "quant_path": "./data/tmp/quant",
     "transcripts": "/datasets/srp073813/reference/kallisto_transcripts.idx",
     "bootstrap": 100,
-    "test_size": 20
+    "test_size": 20,
+    "start_point": 20,
+    "end_point":60
 }

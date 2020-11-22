@@ -4,4 +4,5 @@ data/tmp
 **/.DS_Store
 .idea
 **/.pyc
-Untitled.ipynb
+./Untitled.ipynb
+./*_log.txt
