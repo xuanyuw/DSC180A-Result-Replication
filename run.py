@@ -36,10 +36,14 @@ def main(targets):
             start_point= analysis_cfg['start_point'], end_point=analysis_cfg['end_point'])
             # generate gene matrix
             get_gene_matrix(analysis_cfg['quant_path'], analysis_cfg['tmp_path'], analysis_cfg['gene_naming_path'])
-            # run DESeq analysis
-            command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (testdata_cfg['img_dir'], 
-                                                                                  testdata_cfg['gene_matrix_path'],
-                                                                                  testdata_cfg['run_table_path']
+    
+    # run DESeq analysis
+    if 'DESeq' in targets:
+        command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (testdata_cfg['img_dir'],
+                                                                              testdata_cfg['gene_matrix_path'],
+                                                                              testdata_cfg['run_table_path'])
+        
+        os.system(command2)
             
 
     if 'test' in targets:
@@ -65,7 +69,9 @@ def main(targets):
             # run DESeq analysis
             command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (testdata_cfg['img_dir'], 
                                                                                   testdata_cfg['gene_matrix_test'],
-                                                                                  testdata_cfg['run_table_test']
+                                                                                  testdata_cfg['run_table_test'])
+            
+            os.system(comman2)
 
 
     return
