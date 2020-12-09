@@ -166,11 +166,14 @@ nAcc <- data.frame("SZ"=nacc_sz_res$log2FoldChange,
 
 png(filename = paste(img_dir, "corr_plots.png", sep = ''), height = 600, width = 200)
 par(mfrow=c(3, 1))
-ancg_plot <- corrplot.mixed(cor(Ancg, use = "complete.obs"), 
+ancg_plot <- corrplot.mixed(cor(Ancg, use = "complete.obs",
+			       	method = "spearman"), 
                             title = "AnCg", mar=c(0,0,1,0))
-dlpfc_plot <- corrplot.mixed(cor(Dlpfc, use = "complete.obs"),
+dlpfc_plot <- corrplot.mixed(cor(Dlpfc, use = "complete.obs", 
+				 method = "spearman"),
                              title = "DLPFC", mar=c(0,0,1,0))
-nacc_plot <- corrplot.mixed(cor(nAcc, use = "complete.obs"), 
+nacc_plot <- corrplot.mixed(cor(nAcc, use = "complete.obs", 
+				method = "spearman"), 
                             title = "nAcc", mar=c(0,0,1,0))
 par(mfrow=c(1, 1))
 dev.off()
