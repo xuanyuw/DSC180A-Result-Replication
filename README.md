@@ -18,9 +18,9 @@ The report of this replication project is located in folder notebooks/
 
 ## How to run the project
 
-If wish to run the complete pipeline using origional dataset, simply run the run.py file using command: **python3 run.py data analysis**
+If wish to run the complete pipeline using origional dataset, simply run the run.py file using command: **python3 run.py preprocessing analysis**
 
-If wish to run part of the pipeline, please append only the module of choice after python3 run.py, e.g. **python3 run.py data** will run the steps from raw data to processed data.
+If wish to run part of the pipeline, please append only the module of choice after python3 run.py, e.g. **python3 run.py preprocessing** will run the steps from raw data to processed data.
 
 If wish to run the complete pipeline on dummy test data only, please use the command: **python3 run.py test**
 
