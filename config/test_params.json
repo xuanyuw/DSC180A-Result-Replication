@@ -7,6 +7,7 @@
     "input2": "/datasets/srp073813/SRR3438555_2.fastq.gz",
     "output1": "./test/testdata/srp073813/test_1.fastq.gz",
     "output2": "./test/testdata/srp073813/test_2.fastq.gz",
+    "output_path":"./test/testdata/srp073813",
     "num_lines": 100,
     "input_path": "./test/testdata/srp073813/",
     "img_dir":"./test/img/",

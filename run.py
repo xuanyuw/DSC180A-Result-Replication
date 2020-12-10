@@ -55,8 +55,8 @@ def main(targets):
             if not os.path.exists(testdata_cfg['input_path']):
                 os.mkdir(testdata_cfg['input_path'])
             
-            create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output1'], num_lines=testdata_cfg['num_lines'])
-            create_dummy_data(input=testdata_cfg['input2'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'])
+            create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output1'], num_lines=testdata_cfg['num_lines'], output_path = testdata_cfg["output_path"])
+            create_dummy_data(input=testdata_cfg['input2'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'], output_path = testdata_cfg["output_path"])
             #run fastqc
             run_fastqc(testdata_cfg['input_path'], testdata_cfg['report_path'])
             #run kallisto
