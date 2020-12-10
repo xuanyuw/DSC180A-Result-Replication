@@ -7,8 +7,8 @@
     "start_point": 698,
     "end_point":704,
     "gene_naming_path": "/datasets/srp073813/reference/Gene_Naming.csv",
-    "tmp_path": "./data/src/analysis/"
+    "tmp_path": "./data/src/analysis/",
     "img_dir":"./notebooks/img/",
     "gene_matrix_path":"./data/src/analysis/gene_matrix.csv",
-    "run_table_path":"/datasets/srp073813/reference/SraRunTable.csv",
+    "run_table_path":"/datasets/srp073813/reference/SraRunTable.csv"
 }

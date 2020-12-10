@@ -10,7 +10,7 @@ sys.path.insert(0, './test')
 
 from data_util import *
 from analysis import *
-from test.create_testdata import *
+from create_testdata import *
 
 
 
@@ -39,9 +39,11 @@ def main(targets):
     
     # run DESeq analysis
     if 'DESeq' in targets:
-        command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (testdata_cfg['img_dir'],
-                                                                              testdata_cfg['gene_matrix_path'],
-                                                                              testdata_cfg['run_table_path'])
+        with open('config/analysis_params.json') as fh:
+            analysis_cfg = json.load(fh)
+            command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (analysis_cfg['img_dir'],
+                                                                                  analysis_cfg['gene_matrix_path'],
+                                                                                  analysis_cfg['run_table_path'])
         
         os.system(command2)
             
