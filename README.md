@@ -17,10 +17,6 @@ The report of this replication project is located in folder notebooks/
 
 --src (the toolbox python and R files of analysis and data)
 
-    --analysis
-
-    --data
-
 ## How to run the project
 
 If wish to run the complete pipeline using origional dataset, simply run the run.py file using command: **python3 run.py preprocessing analysis DESeq**
