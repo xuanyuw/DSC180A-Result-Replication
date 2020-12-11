@@ -10,10 +10,15 @@ The report of this replication project is located in folder notebooks/
 ## Structure of the project
 
 --config (the parameters of analysis, data, and model)
+
 --notebooks (the jupyter notebooks of the reports)
+
 --references (references to the publications and tools used in this project)
+
 --src (the toolbox python and R files of analysis and data)
+
     --analysis
+
     --data
 
 ## How to run the project
