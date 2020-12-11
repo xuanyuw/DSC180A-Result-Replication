@@ -1,6 +1,5 @@
 args <- commandArgs(trailingOnly = TRUE)
 
-
 img_dir <- args[1]
 gene_matrix <- args[2]
 run_table <- args[3]
@@ -10,7 +9,6 @@ if(args[4] == "TRUE") {
 } else {
   test_mode <<- FALSE
 }
-
 
 # install packages
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -122,6 +120,7 @@ plot_hist <- function(values, color){
 require(gridExtra)
 
 display_hist <-function(df, color){
+  # exclude any sample with base mean less than 10
   copy <- df[df$baseMean>10, ]
   hist_plot <- plot_hist(copy[copy$padj<1 & !is.na(copy$padj), "padj"], color)
   return(hist_plot)
@@ -166,14 +165,11 @@ nAcc <- data.frame("SZ"=nacc_sz_res$log2FoldChange,
 
 png(filename = paste(img_dir, "corr_plots.png", sep = ''), height = 600, width = 200)
 par(mfrow=c(3, 1))
-ancg_plot <- corrplot.mixed(cor(Ancg, use = "complete.obs",
-			       	method = "spearman"), 
+ancg_plot <- corrplot.mixed(cor(Ancg, use = "complete.obs", method = "spearman"), 
                             title = "AnCg", mar=c(0,0,1,0))
-dlpfc_plot <- corrplot.mixed(cor(Dlpfc, use = "complete.obs", 
-				 method = "spearman"),
+dlpfc_plot <- corrplot.mixed(cor(Dlpfc, use = "complete.obs", method = "spearman"),
                              title = "DLPFC", mar=c(0,0,1,0))
-nacc_plot <- corrplot.mixed(cor(nAcc, use = "complete.obs", 
-				method = "spearman"), 
+nacc_plot <- corrplot.mixed(cor(nAcc, use = "complete.obs", method = "spearman"), 
                             title = "nAcc", mar=c(0,0,1,0))
 par(mfrow=c(1, 1))
 dev.off()
@@ -211,15 +207,15 @@ plot_venn <- function(sz_sig, bpd_sig, mdd_sig){
 # use adjusted pval
 ancg_sz_sig <- rownames(ancg_sz_res[which(ancg_sz_res$padj <0.05), ])
 ancg_bpd_sig <- rownames(ancg_bpd_res[which(ancg_bpd_res$padj <0.05), ])
-ancg_mdd_sig <- rownames(ancg_sz_res[which(ancg_mdd_res$padj <0.05), ])
+ancg_mdd_sig <- rownames(ancg_mdd_res[which(ancg_mdd_res$padj <0.05), ])
 
 dlpfc_sz_sig <- rownames(dlpfc_sz_res[which(dlpfc_sz_res$padj <0.05), ])
 dlpfc_bpd_sig <- rownames(dlpfc_bpd_res[which(dlpfc_bpd_res$padj <0.05), ])
-dlpfc_mdd_sig <- rownames(dlpfc_sz_res[which(dlpfc_mdd_res$padj <0.05), ])
+dlpfc_mdd_sig <- rownames(dlpfc_mdd_res[which(dlpfc_mdd_res$padj <0.05), ])
 
 nacc_sz_sig <- rownames(nacc_sz_res[which(nacc_sz_res$padj <0.05), ])
 nacc_bpd_sig <- rownames(nacc_bpd_res[which(nacc_bpd_res$padj <0.05), ])
-nacc_mdd_sig <- rownames(nacc_sz_res[which(nacc_mdd_res$padj <0.05), ])
+nacc_mdd_sig <- rownames(nacc_mdd_res[which(nacc_mdd_res$padj <0.05), ])
 
 
 png(filename = paste(img_dir, "venn_diagrams.png", sep = ''), height = 300, width = 900)
@@ -249,7 +245,7 @@ plot_hc <- function(cnts, info, sig, disorder){
                                 colData = info,
                                 design = ~ age_at_death + post.mortem_interval 
                                 + Brain_pH + clinical_diagnosis)
-  dds <- DESeq(dds, test="LRT", reduced=~1)
+  dds <- DESeq(dds, test="LRT", reduced=~1, fitType="mean")
   if(test_mode==TRUE){
     vsd <- vst(dds, blind=FALSE, nsub = 3)
   }else{

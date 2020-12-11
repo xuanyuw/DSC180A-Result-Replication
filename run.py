@@ -73,7 +73,7 @@ def main(targets):
                                                                                   testdata_cfg['gene_matrix_test'],
                                                                                   testdata_cfg['run_table_test'])
             
-            os.system(comman2)
+            os.system(command2)
 
 
     return
