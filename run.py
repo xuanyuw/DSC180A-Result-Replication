@@ -3,6 +3,7 @@
 import sys
 import json
 import os
+import shutil
 
 sys.path.insert(0, 'src/data')
 sys.path.insert(0, 'src/analysis')
@@ -52,16 +53,23 @@ def main(targets):
 
         with open('config/test_params.json') as fh:
             testdata_cfg = json.load(fh)
+            #return to default
             if not os.path.exists(testdata_cfg['input_path']):
                 os.mkdir(testdata_cfg['input_path'])
-            
-            create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output1'], num_lines=testdata_cfg['num_lines'], output_path = testdata_cfg["output_path"])
-            create_dummy_data(input=testdata_cfg['input2'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'], output_path = testdata_cfg["output_path"])
+            if not os.path.isfile(testdata_cfg['output1']): 
+                create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output1'], num_lines=testdata_cfg['num_lines'], output_path = testdata_cfg["output_path"])
+            if not os.path.isfile(testdata_cfg['output2']):
+                create_dummy_data(input=testdata_cfg['input2'], output=testdata_cfg['output2'], num_lines=testdata_cfg['num_lines'], output_path = testdata_cfg["output_path"])
             #run fastqc
-            run_fastqc(testdata_cfg['input_path'], testdata_cfg['report_path'])
+            if os.path.exists(testdata_cfg['report_path']):
+                print('fastqc tests already done for this sample')
+            else:
+                run_fastqc(testdata_cfg['input_path'], testdata_cfg['report_path'])
             #run kallisto
-            run_kallisto(testdata_cfg['input_path'], testdata_cfg['quant_path'], 
-                         testdata_cfg['transcripts'], testdata_cfg['bootstrap'])
+            if os.path.exists(testdata_cfg['quant_path']):
+                print('kallisto tests already done for this sample')
+            else:
+                run_kallisto(testdata_cfg['input_path'], testdata_cfg['quant_path'], testdata_cfg['transcripts'], testdata_cfg['bootstrap'])
             # generate pseudo gene matrix and run table
             command = 'Rscript ./test/get_test_genes.R %s %s %s %s'% (testdata_cfg['gene_matrix_path'],
                                                                       testdata_cfg['run_table_path'],

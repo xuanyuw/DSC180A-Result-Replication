@@ -1,0 +1,12 @@
+07:20:51,5 root INFO start processing ./test/testdata/srp073813/test_1.fastq.gz
+07:20:51,290 root INFO finished processing ./test/testdata/srp073813/test_1.fastq.gz
+07:20:51,290 root INFO start processing ./test/testdata/srp073813/test_2.fastq.gz
+07:20:51,477 root INFO finished processing ./test/testdata/srp073813/test_2.fastq.gz
+07:20:51,478 root INFO start analysing ./test/tmp/quant/test
+07:21:09,916 root INFO finished analysing ./test/tmp/quant/test
+07:37:11,975 root INFO start processing ./test/testdata/srp073813/test_1.fastq.gz
+07:37:12,189 root INFO finished processing ./test/testdata/srp073813/test_1.fastq.gz
+07:37:12,189 root INFO start processing ./test/testdata/srp073813/test_2.fastq.gz
+07:37:12,503 root INFO finished processing ./test/testdata/srp073813/test_2.fastq.gz
+07:37:12,504 root INFO start analysing ./test/tmp/quant/test
+07:37:20,851 root INFO finished analysing ./test/tmp/quant/test

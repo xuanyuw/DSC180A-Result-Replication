@@ -11,9 +11,9 @@
     "num_lines": 100,
     "input_path": "./test/testdata/srp073813/",
     "img_dir":"./test/img/",
-    "gene_matrix_path":"./data/src/analysis/gene_matrix.csv",
+    "gene_matrix_path":"./src/analysis/gene_matrix.csv",
     "run_table_path":"/datasets/srp073813/reference/SraRunTable.csv",
-    "gene_matrix_test":"./test/testdata/test_gene_matrix.csv",
-    "run_table_test":"./test/testdata/test_run_table.csv"
+    "gene_matrix_test":"./test/test_gene_matrix.csv",
+    "run_table_test":"./test/test_run_table.csv"
 
 }
