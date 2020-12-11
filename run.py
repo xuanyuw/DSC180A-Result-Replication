@@ -23,6 +23,9 @@ def main(targets):
     `main` runs the targets in order of data=>analysis=>model.
     '''
 
+    #activate R
+    os.system('R version 3.6.3')
+
     if 'preprocessing' in targets:
         with open('config/data_params.json') as fh:
             data_cfg = json.load(fh)
@@ -42,6 +45,8 @@ def main(targets):
     if 'DESeq' in targets:
         with open('config/analysis_params.json') as fh:
             analysis_cfg = json.load(fh)
+            if not os.path.exists(analysis_cfg['img_dir']):
+                os.makedirs(analysis_cfg['img_dir'])
             command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (analysis_cfg['img_dir'],
                                                                                   analysis_cfg['gene_matrix_path'],
                                                                                   analysis_cfg['run_table_path'])
@@ -55,7 +60,7 @@ def main(targets):
             testdata_cfg = json.load(fh)
             #return to default
             if not os.path.exists(testdata_cfg['input_path']):
-                os.mkdir(testdata_cfg['input_path'])
+                os.makedirs(testdata_cfg['input_path'])
             if not os.path.isfile(testdata_cfg['output1']): 
                 create_dummy_data(input=testdata_cfg['input1'], output=testdata_cfg['output1'], num_lines=testdata_cfg['num_lines'], output_path = testdata_cfg["output_path"])
             if not os.path.isfile(testdata_cfg['output2']):
@@ -71,12 +76,12 @@ def main(targets):
             else:
                 run_kallisto(testdata_cfg['input_path'], testdata_cfg['quant_path'], testdata_cfg['transcripts'], testdata_cfg['bootstrap'])
             # generate pseudo gene matrix and run table
-            command = 'Rscript ./test/get_test_genes.R %s %s %s %s'% (testdata_cfg['gene_matrix_path'],
-                                                                      testdata_cfg['run_table_path'],
-                                                                      testdata_cfg['gene_matrix_test'],
-                                                                      testdata_cfg['run_table_test'])
-            os.system(command)
+            if not os.path.isfile(testdata_cfg['gene_matrix_test']) or not os.path.isfile(testdata_cfg['run_table_test']):
+                command = 'Rscript ./test/get_test_genes.R %s %s %s %s'% (testdata_cfg['gene_matrix_path'], testdata_cfg['run_table_path'], testdata_cfg['gene_matrix_test'],testdata_cfg['run_table_test'])
+                os.system(command)
             # run DESeq analysis
+            if not os.path.exists(testdata_cfg['img_dir']): 
+                os.makedirs(testdata_cfg['img_dir'])
             command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (testdata_cfg['img_dir'], 
                                                                                   testdata_cfg['gene_matrix_test'],
                                                                                   testdata_cfg['run_table_test'])

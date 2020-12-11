@@ -11,15 +11,15 @@ if(args[4] == "TRUE") {
 }
 
 # install packages
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
+#if (!requireNamespace("BiocManager", quietly = TRUE))
+#  install.packages("BiocManager")
 
 #BiocManager::install("DESeq2")
 #BiocManager::install("pasilla")
 #BiocManager::install("apeglm")
 
 # import packages
-library("pasilla")
+#library("pasilla")
 library("DESeq2")
 
 
