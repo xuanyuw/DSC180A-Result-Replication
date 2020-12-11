@@ -10,5 +10,6 @@
     "tmp_path": "./data/src/analysis/",
     "img_dir":"./notebooks/img/",
     "gene_matrix_path":"./src/analysis/gene_matrix.csv",
-    "run_table_path":"/datasets/srp073813/reference/SraRunTable.csv"
+    "run_table_path":"/datasets/srp073813/reference/SraRunTable.csv",
+    "package_dir":"./references/packages/"
 }

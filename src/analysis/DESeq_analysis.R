@@ -3,23 +3,15 @@ args <- commandArgs(trailingOnly = TRUE)
 img_dir <- args[1]
 gene_matrix <- args[2]
 run_table <- args[3]
-
-if(args[4] == "TRUE") {
+package_dir <- args[4]
+if(args[5] == "TRUE") {
   test_mode <<- TRUE
 } else {
   test_mode <<- FALSE
 }
 
-# install packages
-#if (!requireNamespace("BiocManager", quietly = TRUE))
-#  install.packages("BiocManager")
-
-#BiocManager::install("DESeq2")
-#BiocManager::install("pasilla")
-#BiocManager::install("apeglm")
 
 # import packages
-#library("pasilla")
 library("DESeq2")
 
 
@@ -103,7 +95,6 @@ dlpfc_mdd_res = get_DESeq_res(dlpfc_mdd, dlpfc_mdd_info)
 nacc_mdd_res = get_DESeq_res(nacc_mdd, nacc_mdd_info)
 
 # generate histograms
-if (!require("ggplot2")) install.packages("ggplot2")
 library(ggplot2)
 plot_hist <- function(values, color){
   plot <- ggplot(as.data.frame(values), aes(x=values)) + 
@@ -151,8 +142,7 @@ grid.arrange(arrangeGrob(ancg_sz_plot, top = "AnCg", left = "SZ", bottom = "P-va
 dev.off()
 
 # generate correlation plots
-if (!require("corrplot")) install.packages("corrplot")
-library(corrplot)
+library(corrplot, lib.loc = package_dir)
 Ancg <- data.frame("SZ"=ancg_sz_res$log2FoldChange, 
                    "BPD"=ancg_bpd_res$log2FoldChange,
                    "MDD"=ancg_mdd_res$log2FoldChange)
@@ -175,10 +165,8 @@ par(mfrow=c(1, 1))
 dev.off()
 
 # generate Venn diagrams
-if (!require("VennDiagram")) install.packages("VennDiagram")
-library(VennDiagram)
-if(!require("RColorBrewer")) install.packages("RColorBrewer")
-library(RColorBrewer)
+library(VennDiagram, lib.loc=package_dir)
+library(RColorBrewer, lib.loc=package_dir)
 myCol <- brewer.pal(3, "Pastel2")
 
 # Chart
@@ -230,9 +218,8 @@ grid.arrange(arrangeGrob(gTree(children=plot_venn(ancg_sz_sig, ancg_bpd_sig, anc
 dev.off()
 
 # Perform heirarchial clustering
-if (!require("dendextend")) install.packages("dendextend")
-library(dendextend)
-library(RColorBrewer)
+library(dendextend, lib.loc=package_dir)
+library(RColorBrewer, lib.loc=package_dir)
 
 plot_hc <- function(cnts, info, sig, disorder){
   if(test_mode==TRUE){

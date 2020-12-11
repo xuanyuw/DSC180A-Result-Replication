@@ -14,6 +14,7 @@
     "gene_matrix_path":"./src/analysis/gene_matrix.csv",
     "run_table_path":"/datasets/srp073813/reference/SraRunTable.csv",
     "gene_matrix_test":"./test/test_gene_matrix.csv",
-    "run_table_test":"./test/test_run_table.csv"
+    "run_table_test":"./test/test_run_table.csv",
+    "package_dir":"./references/packages/"
 
 }

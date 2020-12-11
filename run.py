@@ -24,7 +24,8 @@ def main(targets):
     '''
 
     #activate R
-    os.system('R version 3.6.3')
+    #os.system('R version 3.6.3')
+    #os.system('quit()')
 
     if 'preprocessing' in targets:
         with open('config/data_params.json') as fh:
@@ -47,9 +48,10 @@ def main(targets):
             analysis_cfg = json.load(fh)
             if not os.path.exists(analysis_cfg['img_dir']):
                 os.makedirs(analysis_cfg['img_dir'])
-            command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (analysis_cfg['img_dir'],
-                                                                                  analysis_cfg['gene_matrix_path'],
-                                                                                  analysis_cfg['run_table_path'])
+            command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s %s TRUE' % (analysis_cfg['img_dir'],
+                                                                                     analysis_cfg['gene_matrix_path'],
+                                                                                     analysis_cfg['run_table_path'], 
+                                                                                     analysis_cfg['package_dir'])
         
         os.system(command2)
             
@@ -82,9 +84,10 @@ def main(targets):
             # run DESeq analysis
             if not os.path.exists(testdata_cfg['img_dir']): 
                 os.makedirs(testdata_cfg['img_dir'])
-            command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s TRUE' % (testdata_cfg['img_dir'], 
-                                                                                  testdata_cfg['gene_matrix_test'],
-                                                                                  testdata_cfg['run_table_test'])
+            command2 = 'Rscript ./src/analysis/DESeq_analysis.R %s %s %s %s TRUE' % (testdata_cfg['img_dir'], 
+                                                                                     testdata_cfg['gene_matrix_test'],
+                                                                                     testdata_cfg['run_table_test'], 
+                                                                                     testdata_cfg['package_dir'])
             
             os.system(command2)
 
