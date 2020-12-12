@@ -1,7 +1,4 @@
 {
-    "config": ["config/data_params.json", "config/analysis_params.json"],
-    "build": "run.py", 
-    "library": ["src"],
-    "notebook": ["notebooks/EDA.ipynb", "notebooks/Preprocessing.ipynb"],
-    "targets": ["preprocessing", "analysis"]
+	"dockerhub-id":"ucsdets/dsc180a-genetics:2020.4.2",
+	""repository-id":"https://github.com/xuanyuw/DSC180A-Result-Replication.git"
 }
